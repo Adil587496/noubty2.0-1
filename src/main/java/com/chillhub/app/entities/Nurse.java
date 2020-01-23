@@ -3,6 +3,7 @@ package com.chillhub.app.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
@@ -10,6 +11,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Nurse extends User {
 
+	@Column(unique = true)
 	private String refMedicale;
 
 	@OneToMany(mappedBy = "nurse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

@@ -1,5 +1,6 @@
 package com.chillhub.app.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -7,6 +8,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Doctor extends User {
 
+	@Column(unique = true)
 	private String refMedicale;
 	private boolean disponible;
 	private String room;
