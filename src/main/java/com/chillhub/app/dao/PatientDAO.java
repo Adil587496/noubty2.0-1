@@ -7,5 +7,8 @@ import com.chillhub.app.entities.Patient;
 
 @Repository
 public interface PatientDAO extends JpaRepository<Patient, Integer> {
-
+	
+	Patient findByCin(String cin);
+	Patient findByEmail(String email);
+	Patient findByTel(String tel);
 }

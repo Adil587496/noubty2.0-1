@@ -14,6 +14,7 @@ public class Queuer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String ref;
+	private String status;
 
 	@ManyToOne
 	@JoinColumn(name = "fk_appointment")
@@ -69,8 +70,18 @@ public class Queuer {
 
 	@Override
 	public String toString() {
-		return "Queuer [id=" + id + ", ref=" + ref + ", appointment=" + appointment + ", department=" + department
-				+ ", nurse=" + nurse + "]";
+		return "Queuer [id=" + id + ", ref=" + ref + ", status=" + status + ", appointment=" + appointment
+				+ ", department=" + department + ", nurse=" + nurse + "]";
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
 
 }

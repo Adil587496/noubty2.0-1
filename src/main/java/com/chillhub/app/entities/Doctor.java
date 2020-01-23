@@ -11,6 +11,7 @@ public class Doctor extends User {
 	@Column(unique = true)
 	private String refMedicale;
 	private boolean disponible;
+	@Column(unique = true)
 	private String room;
 	private String absReason;
 
