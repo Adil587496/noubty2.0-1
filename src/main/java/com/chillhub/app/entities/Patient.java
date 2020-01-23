@@ -22,7 +22,9 @@ public class Patient {
 	private String firstName;
 	private String lastName;
 	private int age;
+	@Column(unique = true)
 	private String tel;
+	@Column(unique = true)
 	private String email;
 	@Column(unique = true)
 	private String cin;
