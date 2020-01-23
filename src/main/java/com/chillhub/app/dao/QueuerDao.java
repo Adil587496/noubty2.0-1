@@ -3,9 +3,9 @@ package com.chillhub.app.dao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.chillhub.app.entities.Appointment;
+import com.chillhub.app.entities.Queuer;
 
 @Repository
-public interface RdvDAO extends JpaRepository<Appointment, Integer> {
+public interface QueuerDao extends JpaRepository<Queuer, Integer> {
 
 }
