@@ -7,5 +7,7 @@ import com.chillhub.app.entities.Nurse;
 
 @Repository
 public interface NurseDao extends JpaRepository<Nurse, Integer>{
+	
+	Nurse findByRefMedicale(String ref);
 
 }

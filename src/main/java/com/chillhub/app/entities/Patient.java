@@ -3,6 +3,7 @@ package com.chillhub.app.entities;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,6 +24,7 @@ public class Patient {
 	private int age;
 	private String tel;
 	private String email;
+	@Column(unique = true)
 	private String cin;
 
 	private boolean mutualized;

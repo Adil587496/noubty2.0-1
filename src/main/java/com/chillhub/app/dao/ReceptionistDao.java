@@ -7,5 +7,7 @@ import com.chillhub.app.entities.Receptionist;
 
 @Repository
 public interface ReceptionistDao extends JpaRepository<Receptionist, Integer> {
+	
+	Receptionist findByRegCode(String regCode);
 
 }
