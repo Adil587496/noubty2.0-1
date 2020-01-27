@@ -28,6 +28,10 @@ public class Department {
 	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Doctor> doctors;
+	
+	@OneToMany(mappedBy = "department", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<Nurse> nurses;
 
 	public int getId() {
 		return id;
@@ -69,10 +73,18 @@ public class Department {
 		this.doctors = doctors;
 	}
 
+	public List<Nurse> getNurses() {
+		return nurses;
+	}
+
+	public void setNurses(List<Nurse> nurses) {
+		this.nurses = nurses;
+	}
+
 	@Override
 	public String toString() {
 		return "Department [id=" + id + ", nomDep=" + nomDep + ", codeDep=" + codeDep + ", queue=" + queue
-				+ ", doctors=" + doctors + "]";
+				+ ", doctors=" + doctors + ", nurses=" + nurses + "]";
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.chillhub.app.entities.Doctor;
+import com.chillhub.app.entities.Queuer;
 
 public interface IDoctorService {
 
@@ -20,5 +21,11 @@ public interface IDoctorService {
 	public Doctor getByRefMedical(String ref);
 	
 	public List<Doctor> findDispoDoc();
+
+	void changeDoctorDispo(Doctor doc);
+
+	List<Queuer> getQueueOrderedById(int docId);
+
+	List<Queuer> getQueueOrdered(Doctor doc);
 
 }

@@ -27,6 +27,10 @@ public class Queuer {
 	@ManyToOne
 	@JoinColumn(name = "fk_creator")
 	private Nurse nurse;
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_doctor")
+	private Doctor doctor;
 
 	public int getId() {
 		return id;
@@ -68,10 +72,12 @@ public class Queuer {
 		this.nurse = nurse;
 	}
 
-	@Override
-	public String toString() {
-		return "Queuer [id=" + id + ", ref=" + ref + ", status=" + status + ", appointment=" + appointment
-				+ ", department=" + department + ", nurse=" + nurse + "]";
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
 	}
 
 	public String getStatus() {
@@ -82,6 +88,10 @@ public class Queuer {
 		this.status = status;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Queuer [id=" + id + ", ref=" + ref + ", status=" + status + ", appointment=" + appointment
+				+ ", department=" + department + ", nurse=" + nurse + ", doctor=" + doctor + "]";
+	}
 
 }

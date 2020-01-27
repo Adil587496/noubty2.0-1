@@ -27,6 +27,7 @@ public class Appointment {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date date;
 	private String motif;
+	private boolean status;
 
 	private float patientTemperature;
 	private String patientBloodPressure;
@@ -137,12 +138,20 @@ public class Appointment {
 		this.receptionist = receptionist;
 	}
 
+	public boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
-		return "Appointment [id=" + id + ", date=" + date + ", motif=" + motif + ", patientTemperature="
-				+ patientTemperature + ", patientBloodPressure=" + patientBloodPressure + ", patientWeight="
-				+ patientWeight + ", allergies=" + allergies + ", turns=" + turns + ", patient=" + patient
-				+ ", criticality=" + criticality + ", receptionist=" + receptionist + "]";
+		return "Appointment [id=" + id + ", date=" + date + ", motif=" + motif + ", status=" + status
+				+ ", patientTemperature=" + patientTemperature + ", patientBloodPressure=" + patientBloodPressure
+				+ ", patientWeight=" + patientWeight + ", allergies=" + allergies + ", turns=" + turns + ", patient="
+				+ patient + ", criticality=" + criticality + ", receptionist=" + receptionist + "]";
 	}
 
 }

@@ -6,6 +6,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -16,6 +18,10 @@ public class Nurse extends User {
 
 	@OneToMany(mappedBy = "nurse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<Queuer> createdQueuers;
+	
+	@ManyToOne
+	@JoinColumn(name = "fk_department")
+	private Department department;
 
 	public String getRefMedicale() {
 		return refMedicale;
@@ -27,7 +33,8 @@ public class Nurse extends User {
 
 	@Override
 	public String toString() {
-		return "Nurse [refMedicale=" + refMedicale + ", createdQueuers=" + createdQueuers + "]";
+		return "Nurse [refMedicale=" + refMedicale + ", createdQueuers=" + createdQueuers + ", department=" + department
+				+ "]";
 	}
 
 	public List<Queuer> getCreatedQueuers() {
@@ -36,6 +43,14 @@ public class Nurse extends User {
 
 	public void setCreatedQueuers(List<Queuer> createdQueuers) {
 		this.createdQueuers = createdQueuers;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 }

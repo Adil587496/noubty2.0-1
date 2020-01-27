@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.chillhub.app.dao.QueuerDao;
+import com.chillhub.app.entities.Department;
 import com.chillhub.app.entities.Queuer;
 
 public class QueuerServiceImpl implements IQueuerService {
@@ -31,6 +32,16 @@ public class QueuerServiceImpl implements IQueuerService {
 	@Override
 	public void delete(Queuer q) {
 		dao.delete(q);
+	}
+	
+	@Override
+	public List<Queuer> getOrderedListByDepartment(Department department) {
+		return dao.findByDepartmentOrderByAppointment_Criticality_IdAscIdAsc(department);
+	}
+	
+	@Override
+	public List<Queuer> getOrderedListByDepartmentId(int depId) {
+		return dao.findByDepartment_IdOrderByAppointment_Criticality_IdAscIdAsc(depId);
 	}
 
 }
