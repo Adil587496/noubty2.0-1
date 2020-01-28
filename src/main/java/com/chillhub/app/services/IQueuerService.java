@@ -20,4 +20,6 @@ public interface IQueuerService {
 
 	List<Queuer> getOrderedListByDepartmentId(int depId);
 
+	List<Queuer> getOrderedList(Department department);
+
 }

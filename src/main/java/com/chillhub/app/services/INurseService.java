@@ -18,6 +18,6 @@ public interface INurseService {
 
 	Nurse findByRef(String ref);
 
-	List<Queuer> getQueuersList(Nurse nurse);
+	List<Queuer> getCreatedQueuersList(Nurse nurse);
 
 }

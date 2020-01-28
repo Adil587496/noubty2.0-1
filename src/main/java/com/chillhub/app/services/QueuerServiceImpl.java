@@ -43,5 +43,10 @@ public class QueuerServiceImpl implements IQueuerService {
 	public List<Queuer> getOrderedListByDepartmentId(int depId) {
 		return dao.findByDepartment_IdOrderByAppointment_Criticality_IdAscIdAsc(depId);
 	}
+	
+	@Override
+	public List<Queuer> getOrderedList(Department department) {
+		return dao.findByDepartmentOrderByTurnAsc(department);
+	}
 
 }

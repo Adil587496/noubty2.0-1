@@ -19,5 +19,7 @@ public interface QueuerDao extends JpaRepository<Queuer, Integer> {
 	List<Queuer> findByDepartmentOrderByAppointment_Criticality_IdAscIdAsc(Department department);
 	
 	List<Queuer> findByDoctorOrderByAppointment_Criticality_IdAscIdAsc(Doctor doctor);
+	
+	List<Queuer> findByDepartmentOrderByTurnAsc(Department department);
 
 }

@@ -42,7 +42,7 @@ public class NurseServiceImpl implements INurseService {
 	}
 	
 	@Override
-	public List<Queuer> getQueuersList(Nurse nurse) {
+	public List<Queuer> getCreatedQueuersList(Nurse nurse) {
 		return nurse.getCreatedQueuers();
 	}
 

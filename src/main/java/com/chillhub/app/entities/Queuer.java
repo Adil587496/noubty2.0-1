@@ -15,6 +15,7 @@ public class Queuer {
 	private int id;
 	private String ref;
 	private String status;
+	private int turn;
 
 	@ManyToOne
 	@JoinColumn(name = "fk_appointment")
@@ -87,11 +88,19 @@ public class Queuer {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+
+	public int getTurn() {
+		return turn;
+	}
+
+	public void setTurn(int turn) {
+		this.turn = turn;
+	}
+
 	@Override
 	public String toString() {
-		return "Queuer [id=" + id + ", ref=" + ref + ", status=" + status + ", appointment=" + appointment
-				+ ", department=" + department + ", nurse=" + nurse + ", doctor=" + doctor + "]";
+		return "Queuer [id=" + id + ", ref=" + ref + ", status=" + status + ", turn=" + turn + ", appointment="
+				+ appointment + ", department=" + department + ", nurse=" + nurse + ", doctor=" + doctor + "]";
 	}
 
 }
