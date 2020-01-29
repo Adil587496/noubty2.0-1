@@ -7,5 +7,7 @@ import com.chillhub.app.entities.Department;
 
 @Repository
 public interface DepartmentDao extends JpaRepository<Department, Integer> {
+	
+	//get list of queuers ordered
 
 }

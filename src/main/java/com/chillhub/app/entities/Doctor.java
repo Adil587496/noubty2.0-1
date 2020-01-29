@@ -1,9 +1,16 @@
 package com.chillhub.app.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Doctor extends User {
@@ -22,6 +29,10 @@ public class Doctor extends User {
 	@ManyToOne
 	@JoinColumn(name = "fk_department")
 	private Department department;
+	
+	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<Queuer> queuersList;
 
 	public String getRefMedicale() {
 		return refMedicale;
@@ -71,9 +82,18 @@ public class Doctor extends User {
 		this.department = department;
 	}
 
+	public List<Queuer> getQueuersList() {
+		return queuersList;
+	}
+
+	public void setQueuersList(List<Queuer> queuersList) {
+		this.queuersList = queuersList;
+	}
+
 	@Override
 	public String toString() {
 		return "Doctor [refMedicale=" + refMedicale + ", disponible=" + disponible + ", room=" + room + ", absReason="
-				+ absReason + ", speciality=" + speciality + ", department=" + department + "]";
+				+ absReason + ", speciality=" + speciality + ", department=" + department + ", queuersList="
+				+ queuersList + "]";
 	}
 }

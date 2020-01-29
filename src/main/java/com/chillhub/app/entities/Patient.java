@@ -28,6 +28,8 @@ public class Patient {
 	private String email;
 	@Column(unique = true)
 	private String cin;
+	
+	//situation familiale
 
 	private boolean mutualized;
 

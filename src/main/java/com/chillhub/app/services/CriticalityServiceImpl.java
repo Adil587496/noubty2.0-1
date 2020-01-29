@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.chillhub.app.dao.CriticalityDao;
 import com.chillhub.app.entities.Criticality;
 
+@Service
 public class CriticalityServiceImpl implements ICriticalityService {
 	
 	@Autowired

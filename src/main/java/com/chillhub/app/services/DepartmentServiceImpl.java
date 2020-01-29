@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.chillhub.app.dao.DepartmentDao;
 import com.chillhub.app.entities.Department;
 
+@Service
 public class DepartmentServiceImpl implements IDepartmentService {
 	
 	@Autowired
