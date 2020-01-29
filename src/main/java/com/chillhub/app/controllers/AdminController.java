@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chillhub.app.custom_exceptions.CustomApiException;
+import com.chillhub.app.entities.Admin;
 import com.chillhub.app.entities.Criticality;
 import com.chillhub.app.entities.Department;
 import com.chillhub.app.entities.Doctor;
 import com.chillhub.app.entities.Nurse;
 import com.chillhub.app.entities.Receptionist;
+import com.chillhub.app.entities.Role;
 import com.chillhub.app.entities.Speciality;
+import com.chillhub.app.services.IAdminService;
 import com.chillhub.app.services.ICriticalityService;
 import com.chillhub.app.services.IDepartmentService;
 import com.chillhub.app.services.IDoctorService;
@@ -31,6 +34,9 @@ import com.chillhub.app.services.ISpecialityService;
 @CrossOrigin
 @RequestMapping("api/admin")
 public class AdminController {
+	
+	@Autowired
+	IAdminService adminService;
 	
 	@Autowired
 	INurseService nurseService;
@@ -49,6 +55,14 @@ public class AdminController {
 	
 	@Autowired
 	ICriticalityService criticalityService;
+	
+	@GetMapping("{id}")
+	public Admin getAdminById(@PathVariable int id) throws CustomApiException {
+		if(!adminService.getOneById(id).isPresent()) {
+			throw new CustomApiException("admin with id " + id + " is not found !!!");
+		}
+		return adminService.getOneById(id).get();
+	}
 	
 //	get lists of nurses, receptionists and doctors methods
 	
@@ -97,16 +111,25 @@ public class AdminController {
 	
 	@PostMapping("nurses")
 	public void addNurse(@RequestBody Nurse nurse) {
+		Role role = new Role();
+		role.setId(3);
+		nurse.setRole(role);
 		nurseService.addOrUpdate(nurse);
 	}
 	
 	@PostMapping("receptionists")
 	public void addReceptionist(@RequestBody Receptionist receptionist) {
+		Role role = new Role();
+		role.setId(2);
+		receptionist.setRole(role);
 		receptionistService.addOrUpdate(receptionist);
 	}
 	
 	@PostMapping("doctors")
 	public void addDoctor(@RequestBody Doctor doctor) {
+		Role role = new Role();
+		role.setId(4);
+		doctor.setRole(role);
 		doctorService.addOrUpdate(doctor);
 	}
 	

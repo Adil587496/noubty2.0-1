@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.chillhub.app.dao.QueuerDao;
 import com.chillhub.app.entities.Department;
 import com.chillhub.app.entities.Queuer;
 
+@Service
 public class QueuerServiceImpl implements IQueuerService {
 	
 	@Autowired

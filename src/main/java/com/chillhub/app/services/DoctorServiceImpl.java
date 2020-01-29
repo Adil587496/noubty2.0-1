@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.chillhub.app.dao.DoctorDao;
 import com.chillhub.app.dao.QueuerDao;
 import com.chillhub.app.entities.Doctor;
 import com.chillhub.app.entities.Queuer;
 
+@Service
 public class DoctorServiceImpl implements IDoctorService {
 
 	@Autowired
