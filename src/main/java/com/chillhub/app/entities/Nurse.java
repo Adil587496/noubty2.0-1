@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Nurse extends User {
 
@@ -17,6 +19,7 @@ public class Nurse extends User {
 	private String refMedicale;
 
 	@OneToMany(mappedBy = "nurse", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<Queuer> createdQueuers;
 	
 	@ManyToOne
