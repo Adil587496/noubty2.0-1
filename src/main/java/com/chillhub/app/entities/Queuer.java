@@ -14,7 +14,7 @@ public class Queuer {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String ref;
-	private String status;
+	private boolean recheck;
 	private int turn;
 
 	@ManyToOne
@@ -81,12 +81,12 @@ public class Queuer {
 		this.doctor = doctor;
 	}
 
-	public String getStatus() {
-		return status;
+	public boolean isRecheck() {
+		return recheck;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setRecheck(boolean recheck) {
+		this.recheck = recheck;
 	}
 
 	public int getTurn() {
@@ -99,7 +99,7 @@ public class Queuer {
 
 	@Override
 	public String toString() {
-		return "Queuer [id=" + id + ", ref=" + ref + ", status=" + status + ", turn=" + turn + ", appointment="
+		return "Queuer [id=" + id + ", ref=" + ref + ", recheck=" + recheck + ", turn=" + turn + ", appointment="
 				+ appointment + ", department=" + department + ", nurse=" + nurse + ", doctor=" + doctor + "]";
 	}
 

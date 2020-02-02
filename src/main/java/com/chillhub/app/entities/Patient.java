@@ -22,9 +22,10 @@ public class Patient {
 	private String firstName;
 	private String lastName;
 	private int age;
-	@Column(unique = true)
+	private String civilStatus;
+	@Column(unique = false)
 	private String tel;
-	@Column(unique = true)
+	@Column(unique = false)
 	private String email;
 	@Column(unique = true)
 	private String cin;
@@ -109,11 +110,19 @@ public class Patient {
 		this.appointments = appointments;
 	}
 
+	public String getCivilStatus() {
+		return civilStatus;
+	}
+
+	public void setCivilStatus(String civilStatus) {
+		this.civilStatus = civilStatus;
+	}
+
 	@Override
 	public String toString() {
-		return "Patient [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age + ", tel="
-				+ tel + ", email=" + email + ", cin=" + cin + ", mutualized=" + mutualized + ", appointments="
-				+ appointments + "]";
+		return "Patient [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", age=" + age
+				+ ", civilStatus=" + civilStatus + ", tel=" + tel + ", email=" + email + ", cin=" + cin
+				+ ", mutualized=" + mutualized + ", appointments=" + appointments + "]";
 	}
 
 }

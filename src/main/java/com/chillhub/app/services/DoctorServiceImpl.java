@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.chillhub.app.dao.DoctorDao;
@@ -20,6 +21,8 @@ public class DoctorServiceImpl implements IDoctorService {
 	@Autowired
 	QueuerDao queuerDao;
 	
+	BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+	
 	@Override
 	public List<Doctor> getAll() {
 		return dao.findAll();
@@ -32,6 +35,8 @@ public class DoctorServiceImpl implements IDoctorService {
 	
 	@Override
 	public void addOrUpdate(Doctor d) {
+		d.setPassword(d.getRefMedicale());
+		d.setPassword(bcrypt.encode(d.getPassword()));
 		dao.save(d);
 	}
 	

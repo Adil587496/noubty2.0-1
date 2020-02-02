@@ -130,6 +130,8 @@ public class AdminController {
 		Role role = new Role();
 		role.setId(4);
 		doctor.setRole(role);
+		doctor.setDisponible(false);
+		doctor.setAbsReason("has just been assigned");
 		doctorService.addOrUpdate(doctor);
 	}
 	

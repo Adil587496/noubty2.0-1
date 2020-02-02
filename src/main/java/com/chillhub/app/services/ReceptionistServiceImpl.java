@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.chillhub.app.dao.ReceptionistDao;
@@ -15,6 +16,8 @@ public class ReceptionistServiceImpl implements IReceptionistService {
 	
 	@Autowired
 	ReceptionistDao dao;
+	
+	BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
 	
 	@Override
 	public List<Receptionist> getAll() {
@@ -28,6 +31,8 @@ public class ReceptionistServiceImpl implements IReceptionistService {
 	
 	@Override
 	public void addOrUpdate(Receptionist r) {
+		r.setPassword(r.getRegCode());
+		r.setPassword(bcrypt.encode(r.getPassword()));
 		dao.save(r);
 	}
 	

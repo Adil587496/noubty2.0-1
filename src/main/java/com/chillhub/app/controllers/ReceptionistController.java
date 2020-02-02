@@ -90,7 +90,7 @@ public class ReceptionistController {
 			throw new CustomApiException("patient with id " + patientId + " is not found !!!");
 		}
 		appointment.setDate(new Date());
-		appointment.setStatus(true);
+		appointment.setStatus(false);
 		appointment.setPatient(patientService.getOneById(patientId).get());
 		appointment.setReceptionist(receptionistService.getOneById(receptionistId).get());
 		appointmentService.addOrUpdate(appointment);
