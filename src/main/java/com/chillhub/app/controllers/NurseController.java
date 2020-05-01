@@ -107,14 +107,14 @@ public class NurseController {
 	}
 	
 	@GetMapping("/{nid}/queuers")
-	public List<Queuer> getDepartmentNotAssignedQueue(@PathVariable int nurseId) throws CustomApiException {
-		if(!nurseService.getOneById(nurseId).isPresent()) {
-			throw new CustomApiException("nurse with id " + nurseId + " is not found !!!");
+	public List<Queuer> getDepartmentNotAssignedQueue(@PathVariable int nid) throws CustomApiException {
+		if(!nurseService.getOneById(nid).isPresent()) {
+			throw new CustomApiException("nurse with id " + nid + " is not found !!!");
 		}
-		List<Queuer> allDepartmentQueuers =  queuerService.getOrderedList(nurseService.getOneById(nurseId).get().getDepartment());
+		List<Queuer> allDepartmentQueuers =  queuerService.getOrderedList(nurseService.getOneById(nid).get().getDepartment());
 		List<Queuer> queue = new ArrayList<Queuer>();
 		for(Queuer queuer: allDepartmentQueuers) {
-			if(queuer.getDoctor() == null) {
+			if(queuer.getDoctor() == null && queuer.getAppointment().getStatus() == false) {
 				queue.add(queuer);
 			}
 		}
@@ -122,11 +122,11 @@ public class NurseController {
 	}
 	
 	@GetMapping("/{nid}/doctors")
-	public List<Doctor> getDepartmentDoctors(@PathVariable int nurseId) throws CustomApiException {
-		if(!nurseService.getOneById(nurseId).isPresent()) {
-			throw new CustomApiException("nurse with id " + nurseId + " is not found !!!");
+	public List<Doctor> getDepartmentDoctors(@PathVariable int nid) throws CustomApiException {
+		if(!nurseService.getOneById(nid).isPresent()) {
+			throw new CustomApiException("nurse with id " + nid + " is not found !!!");
 		}
-		return nurseService.getOneById(nurseId).get().getDepartment().getDoctors();
+		return nurseService.getOneById(nid).get().getDepartment().getDoctors();
 	}
 	
 	@PostMapping("/{nid}/appointments/{aid}/add-to-queue")
