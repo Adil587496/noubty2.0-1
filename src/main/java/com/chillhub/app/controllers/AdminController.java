@@ -143,6 +143,9 @@ public class AdminController {
 			throw new CustomApiException("nurse with id " + id + " is not found !!!");
 		}
 		nurse.setId(id);
+		Role role = new Role();
+		role.setId(3);
+		nurse.setRole(role);
 		nurseService.addOrUpdate(nurse);
 	}
 	
@@ -152,6 +155,9 @@ public class AdminController {
 			throw new CustomApiException("receptionist with id " + id + " is not found !!!");
 		}
 		receptionist.setId(id);
+		Role role = new Role();
+		role.setId(2);
+		receptionist.setRole(role);
 		receptionistService.addOrUpdate(receptionist);
 	}
 	
@@ -161,6 +167,9 @@ public class AdminController {
 			throw new CustomApiException("doctor with id " + id + " is not found !!!");
 		}
 		doctor.setId(id);
+		Role role = new Role();
+		role.setId(4);
+		doctor.setRole(role);
 		doctorService.addOrUpdate(doctor);
 	}
 	
