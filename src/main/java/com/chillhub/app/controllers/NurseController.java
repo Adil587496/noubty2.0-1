@@ -100,9 +100,18 @@ public class NurseController {
 		List<Queuer> allDepartmentQueuers =  queuerService.getOrderedListByDepartment(nurseService.getOneById(nurseId).get().getDepartment());
 		int i = 1;
 		for(Queuer queuer: allDepartmentQueuers) {
-			queuer.setTurn(i);
-			queuerService.addOrUpdate(queuer);
-			i++;
+			if(!queuer.isRecheck()) {
+				queuer.setTurn(i);
+				queuerService.addOrUpdate(queuer);
+				i++;
+			}
+		}
+		for(Queuer queuer: allDepartmentQueuers) {
+			if(queuer.isRecheck()) {
+				queuer.setTurn(i);
+				queuerService.addOrUpdate(queuer);
+				i++;
+			}
 		}
 	}
 	
@@ -176,13 +185,15 @@ public class NurseController {
 		if(!queuerService.getOneById(queuerId).isPresent()) {
 			throw new CustomApiException("queuer with id " + queuerId + " is not found !!!");
 		}
-		Department dep = nurseService.getOneById(nurseId).get().getDepartment();
 		Queuer q = queuerService.getOneById(queuerId).get();
 		q.setId(queuerId);
 		q.setRecheck(!q.isRecheck());
-		q.setTurn(queuerService.getOrderedList(dep).size()+1);
+		Doctor doc = q.getDoctor();
+		q.setDoctor(null);
 		queuerService.addOrUpdate(q);
-		
+		doc.setLatestQueuer(null);
+		doctorService.addOrUpdate(doc);
+		classifyQueue(nurseId);
 	}
 	
 	@DeleteMapping("{nid}/queuers/{qid}")
@@ -218,7 +229,9 @@ public class NurseController {
 		Queuer q = queuerService.getOneById(queuerId).get();
 		q.setDoctor(doctorService.getOneById(doctorId).get());
 		queuerService.addOrUpdate(q);
-		
+		Doctor doc = doctorService.getOneById(doctorId).get();
+		doc.setLatestQueuer(q);
+		doctorService.addOrUpdate(doc);
 	}
 	
 	@PatchMapping("/appointments/{aid}/change-status")

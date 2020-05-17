@@ -27,5 +27,7 @@ public interface IDoctorService {
 	List<Queuer> getQueueOrderedById(int docId);
 
 	List<Queuer> getQueueOrdered(Doctor doc);
+	
+	Queuer getDoctorLatestQueuer(int docId);
 
 }

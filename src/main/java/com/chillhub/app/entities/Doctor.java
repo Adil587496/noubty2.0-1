@@ -10,7 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.JoinFormula;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Doctor extends User {
@@ -33,6 +36,25 @@ public class Doctor extends User {
 	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Queuer> queuersList;
+	
+	@ManyToOne
+//	@JoinFormula("(" +
+//	    "SELECT q.id " +
+//	    "FROM queuer q " +
+//	    "WHERE q.fk_doctor = id " +
+//	    "ORDER BY q.created_at DESC " +
+//	    "LIMIT 1" +
+//	")")
+	@JsonIgnoreProperties({"appointment", "department", "nurse", "doctor", "hibernateLazyInitializer", "handler"})
+	private Queuer latestQueuer;
+
+	public Queuer getLatestQueuer() {
+		return latestQueuer;
+	}
+
+	public void setLatestQueuer(Queuer latestQueuer) {
+		this.latestQueuer = latestQueuer;
+	}
 
 	public String getRefMedicale() {
 		return refMedicale;
@@ -94,6 +116,6 @@ public class Doctor extends User {
 	public String toString() {
 		return "Doctor [refMedicale=" + refMedicale + ", disponible=" + disponible + ", room=" + room + ", absReason="
 				+ absReason + ", speciality=" + speciality + ", department=" + department + ", queuersList="
-				+ queuersList + "]";
+				+ queuersList + ", latestQueuer=" + latestQueuer + "]";
 	}
 }

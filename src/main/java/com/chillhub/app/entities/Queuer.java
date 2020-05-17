@@ -1,11 +1,15 @@
 package com.chillhub.app.entities;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Queuer {
@@ -16,6 +20,17 @@ public class Queuer {
 	private String ref;
 	private boolean recheck;
 	private int turn;
+	
+	@CreationTimestamp
+    private LocalDateTime createdAt;
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "fk_appointment")
@@ -99,8 +114,9 @@ public class Queuer {
 
 	@Override
 	public String toString() {
-		return "Queuer [id=" + id + ", ref=" + ref + ", recheck=" + recheck + ", turn=" + turn + ", appointment="
-				+ appointment + ", department=" + department + ", nurse=" + nurse + ", doctor=" + doctor + "]";
+		return "Queuer [id=" + id + ", ref=" + ref + ", recheck=" + recheck + ", turn=" + turn + ", createdAt="
+				+ createdAt + ", appointment=" + appointment + ", department=" + department + ", nurse=" + nurse
+				+ ", doctor=" + doctor + "]";
 	}
 
 }
