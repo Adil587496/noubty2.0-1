@@ -81,4 +81,9 @@ public class DoctorServiceImpl implements IDoctorService {
 	public List<Queuer> getQueueOrdered(Doctor doc) {
 		return queuerDao.findByDoctorOrderByAppointment_Criticality_IdAscIdAsc(doc);
 	}
+
+	@Override
+	public Queuer getDoctorLatestQueuer(int docId) {
+		return dao.getDoctorLatestQueuer(docId);
+	}
 }
